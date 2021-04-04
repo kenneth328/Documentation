@@ -1,0 +1,149 @@
+<nav id="navbar">
+    <title>Technical Documentation</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+  <header>CSS Flexbox</header>
+  <ul>
+    <li><a class="nav-link" href="#The_Flexbox">The Flexbox</a></li>
+    <li><a class="nav-link" href="#Start_and_End_Lines">Start and End Lines</a></li>
+    <li><a class="nav-link" href="#The_Axis">The Axis</a></li>
+    <li><a class="nav-link" href="#Flex_Container">Flex Container</a></li>
+    <li><a class="nav-link" href="#Flex_Direction">Flex Direction</a></li>
+    <li><a class="nav-link" href="#Flex_Wrap">Flex Wrap</a></li>
+    <li><a class="nav-link" href="#Alignment">Alignment</a></li>
+    <li><a class="nav-link" href="#Justification">Justification</a></li>
+    <li><a class="nav-link" href="#Reference">Reference</a></li>
+  </ul>
+</nav>
+
+<main id="main-doc">
+  <section class="main-section" id="The_Flexbox">
+    <header>The Flexbox</header>
+    <article>
+      <p>The Flexbox module aims at providing a more efficient way to lay out, align and distribute space among items in a container, even when their size is unknown and/or dynamic (thus the word “flex”).</p>
+
+      <p>The main idea behind the flex layout is to give the container the ability to alter its items’ width/height (and order) to best fill the available space (mostly to accommodate to all kind of display devices and screen sizes). A flex container expands items to fill available free space or shrinks them to prevent overflow.</p>
+    </article>
+  </section>
+
+  <section class="main-section" id="Start_and_End_Lines">
+    <header>Start and End Lines</header>
+    <article>
+      <p>Another vital area of understanding is how flexbox makes no assumption about the writing mode of the document. In the past, CSS was heavily weighted towards horizontal and left-to-right writing modes. Modern layout methods encompass the range of writing modes and so we no longer assume that a line of text will start at the top left of a document and run towards the right hand side, with new lines appearing one under the other.</p>
+
+      <p>If the flex-direction is row and I am working in English, then the start edge of the main axis will be on the left, the end edge on the right. If I were to work in Arabic, then the start edge of my main axis would be on the right and the end edge on the left. In both cases the start edge of the cross axis is at the top of the flex container and the end edge at the bottom, as both languages have a horizontal writing mode. After a while, thinking about start and end rather than left and right becomes natural, and will be useful to you when dealing with other layout methods such as CSS Grid Layout which follow the same patterns.</p>
+    </article>
+  </section>
+
+  <section class="main-section" id="The_Axis">
+    <header>The Axis</header>
+    <article>
+      <p>When working with flexbox you need to think in terms of two axes — the main axis and the cross axis. The main axis is defined by the flex-direction property, and the cross axis runs perpendicular to it. Everything we do with flexbox refers back to these axes, so it is worth understanding how they work from the outset.</p>
+
+      <div>
+        <ul>
+          <li><span class="define">main axis</span> – The main axis of a flex container is the primary axis along which flex items are laid out. Beware, it is not necessarily horizontal; it depends on the flex-direction property.</li>
+          <li><span class="define">main-start</span> | <span class="define">main-end</span> – The flex items are placed within the container starting from main-start and going to main-end.</li>
+          <li><span class="define">main size</span> – A flex item’s width or height, whichever is in the main dimension, is the item’s main size. The flex item’s main size property is either the ‘width’ or ‘height’ property, whichever is in the main dimension.</li>
+          <li><span class="define">cross axis</span> – The axis perpendicular to the main axis is called the cross axis. Its direction depends on the main axis direction.</li>
+          <li><span class="define">cross-start</span> | <span class="define">cross-end</span> – Flex lines are filled with items and placed into the container starting on the cross-start side of the flex container and going toward the cross-end side.</li>
+          <li><span class="define">cross size</span> – The width or height of a flex item, whichever is in the cross dimension, is the item’s cross size. The cross size property is whichever of ‘width’ or ‘height’ that is in the cross dimension.</li>
+        </ul>
+      </div>
+    </article>
+  </section>
+
+  <section class="main-section" id="Flex_Container">
+    <header>Flex Container</header>
+    <article>
+      <p>An area of a document laid out using flexbox is called a flex container. To create a flex container, we set the value of the area's container's display property to flex or inline-flex. As soon as we do this the direct children of that container become flex items. As with all properties in CSS, some initial values are defined, so when creating a flex container all of the contained flex items will behave in the following way.</p>
+      <code>.container { display: flex; }</code>
+      <div>
+        <ul>
+          <li>Items display in a row (the flex-direction property's default is row).</li>
+          <li>The items start from the start edge of the main axis.</li>
+          <li>The items do not stretch on the main dimension, but can shrink.</li>
+          <li>The items will stretch to fill the size of the cross axis.</li>
+          <li>The flex-basis property is set to auto.</li>
+          <li>The flex-wrap property is set to nowrap.</li>
+        </ul>
+      </div>
+
+      <p>The result of this is that your items will all line up in a row, using the size of the content as their size in the main axis. If there are more items than can fit in the container, they will not wrap but will instead overflow. If some items are taller than others, all items will stretch along the cross axis to fill its full size.</p>
+    </article>
+  </section>
+
+  <section class="main-section" id="Flex_Direction">
+    <header>Flex Direction</header>
+    <article>
+      <p>
+        Adding the flex-direction property to the flex container allows us to change the direction in which our flex items display. Setting flex-direction: row-reverse will keep the items displaying along the row, however the start and end lines are switched.</p>
+
+      <code>.container { flex-direction: row | row-reverse | column | column-reverse; }</code>
+
+      <p>If we change flex-direction to column the main axis switches and our items now display in a column. Set column-reverse and the start and end lines are again switched
+      </p>
+    </article>
+  </section>
+
+  <section class="main-section" id="Flex_Wrap">
+    <header>Flex Wrap</header>
+    <article>
+      <p>
+        While flexbox is a one dimensional model, it is possible to cause our flex items to wrap onto multiple lines. In doing so, you should consider each line as a new flex container. Any space distribution will happen across that line, without reference to the lines either side.</p>
+
+      <code>.container { flex-wrap: nowrap | wrap | wrap-reverse; } </code>
+
+      <p>To cause wrapping behaviour add the property flex-wrap with a value of wrap. Now, should your items be too large to all display in one line, they will wrap onto another line. The live sample below contains items that have been given a width, the total width of the items being too wide for the flex container. As flex-wrap is set to wrap, the items wrap. Set it to nowrap, which is also the initial value, and they will instead shrink to fit the container because they are using initial flexbox values that allows items to shrink. Using nowrap would cause an overflow if the items were not able to shrink, or could not shrink small enough to fit.</p>
+    </article>
+  </section>
+
+  <section class="main-section" id="Alignment">
+    <header>Alignment</header>
+    <article>
+      <p>The align-items property will align the items on the cross axis. The initial value for this property is stretch and this is why flex items stretch to the height of the tallest one by default. They are in fact stretching to fill the flex container — the tallest item is defining the height of that.</p>
+
+      <code>.container { align-items: stretch | flex-start | flex-end | center | baseline | first baseline | last baseline | start | end | self-start | self-end + ... safe | unsafe; }</code>
+
+      <p>You could instead set align-items to flex-start in order to make the items line up at the start of the flex container, flex-end to align them to the end, or center to align them in the centre. Try this in the live example — I have given the flex container a height in order that you can see how the items can be moved around inside the container. See what happens if you set the value of align-items to:</p>
+
+      <div>
+        <ul>
+          <li>stretch</li>
+          <li>flex-start</li>
+          <li>flex-end</li>
+          <li>center</li>
+        </ul>
+      </div>
+    </article>
+  </section>
+
+  <section class="main-section" id="Justification">
+    <header>Justification</header>
+    <article>
+      <p>The justify-content property is used to align the items on the main axis, the direction in which flex-direction has set the flow. The initial value is flex-start which will line the items up at the start edge of the container, but you could also set the value to flex-end to line them up at the end, or center to line them up in the centre.</p>
+      <code>.container { justify-content: flex-start | flex-end | center | space-between | space-around | space-evenly | start | end | left | right ... + safe | unsafe; }</code>
+      <p>You can also use the value space-between to take all the spare space after the items have been laid out, and share it out evenly between the items so there will be an equal amount of space between each item. To cause an equal amount of space on the right and left of each item use the value space-around. With space-around, items have a half-size space on either end. Or, to cause items to have equal space around them use the value space-evenly. With space-evenly, items have a full-size space on either end.</p>
+      <div>
+        <ul>
+          <li>flex-start</li>
+          <li>flex-end</li>
+          <li>center</li>
+          <li>space-around</li>
+          <li>space-between</li>
+          <li>space-evenly</li>
+        </ul>
+      </div>
+    </article>
+  </section>
+
+  <section class="main-section" id="Reference">
+    <header>Reference</header>
+    <article>
+      <p>All the documentation in this page is taken from
+        <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Basic_Concepts_of_Flexbox" target="_blank">MDN</a> and <a href="https://css-tricks.com/snippets/css/a-guide-to-flexbox/" targe="_blank">CSS-Tricks</a>
+      </p>
+    </article>
+  </section>
+
+</main>
